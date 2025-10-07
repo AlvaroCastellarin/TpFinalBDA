@@ -38,11 +38,6 @@
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem1 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem2 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem3 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem4 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem5 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
@@ -117,6 +112,7 @@
             this.chartEmpresa.Name = "chartEmpresa";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             series1.YValuesPerPoint = 2;
@@ -138,6 +134,7 @@
             this.chartSucursales.Location = new System.Drawing.Point(13, 265);
             this.chartSucursales.Name = "chartSucursales";
             series2.ChartArea = "ChartArea1";
+            series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartSucursales.Series.Add(series2);
@@ -154,23 +151,6 @@
             // 
             chartArea3.Name = "ChartArea1";
             this.chartMarcas.ChartAreas.Add(chartArea3);
-            legendItem1.BackImageTransparentColor = System.Drawing.Color.Red;
-            legendItem1.BackSecondaryColor = System.Drawing.Color.Red;
-            legendItem1.Color = System.Drawing.Color.Red;
-            legendItem1.Name = "Toyota";
-            legendItem2.Color = System.Drawing.Color.DodgerBlue;
-            legendItem2.Name = "Volkswagen";
-            legendItem3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            legendItem3.Name = "Ford";
-            legendItem4.Color = System.Drawing.Color.Silver;
-            legendItem4.Name = "Peugeot";
-            legendItem5.Color = System.Drawing.Color.Green;
-            legendItem5.Name = "Fiat";
-            legend3.CustomItems.Add(legendItem1);
-            legend3.CustomItems.Add(legendItem2);
-            legend3.CustomItems.Add(legendItem3);
-            legend3.CustomItems.Add(legendItem4);
-            legend3.CustomItems.Add(legendItem5);
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend3.Name = "Legend1";
             this.chartMarcas.Legends.Add(legend3);

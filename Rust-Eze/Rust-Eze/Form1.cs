@@ -15,6 +15,34 @@ namespace Rust_Eze
         public Form1()
         {
             InitializeComponent();
+            actualizarGraficos();
+        }
+        void actualizarGraficos()
+        {
+            chartEmpresa.Series["Series1"].Points.Clear();
+            chartEmpresa.Series["Series1"].Points.AddXY("Enero", 80);
+            chartEmpresa.Series["Series1"].Points.AddXY("Febrero", 95);
+            chartEmpresa.Series["Series1"].Points.AddXY("Marzo", 60);
+            chartEmpresa.Series["Series1"].Points.AddXY("Abril", 75);
+            chartEmpresa.Series["Series1"].Points.AddXY("Mayo", 40);
+            chartEmpresa.Series["Series1"].Points.AddXY("Junio", 85);
+            chartEmpresa.Series["Series1"].Points.AddXY("Julio", 85);
+            chartEmpresa.Series["Series1"].Points.AddXY("Agosto", 85);
+            chartEmpresa.Series["Series1"].Points.AddXY("Septiembre", 85);
+            chartEmpresa.Series["Series1"].Points.AddXY("Octubre", 65);
+            chartEmpresa.Series["Series1"].Points.AddXY("Noviembre", 75);
+            chartEmpresa.Series["Series1"].Points.AddXY("Diciembre", 55);
+            chartSucursales.Series["Series1"].Points.Clear();
+            chartSucursales.Series["Series1"].Points.AddXY("Rosario", 90);
+            chartSucursales.Series["Series1"].Points.AddXY("Buenos Aires", 100);
+            chartSucursales.Series["Series1"].Points.AddXY("Córdoba", 70);
+            chartMarcas.Series["Series1"].Points.AddXY("Ford", 40);
+            chartMarcas.Series["Series1"].Points.AddXY("Toyota", 35);
+            chartMarcas.Series["Series1"].Points.AddXY("Peugeot", 25);
+            chartMarcas.Series["Series1"].Points.AddXY("Fiat", 20);
+            chartMarcas.Series["Series1"].Points.AddXY("Volkswagen", 30);
+
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
