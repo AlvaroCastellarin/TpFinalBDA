@@ -32,6 +32,11 @@ namespace Rust_Eze
             chartEmpresa.Series["Series1"].Points.AddXY("Octubre", 65);
             chartEmpresa.Series["Series1"].Points.AddXY("Noviembre", 75);
             chartEmpresa.Series["Series1"].Points.AddXY("Diciembre", 55);
+            chartEmpresa.ChartAreas[0].AxisX.Interval = 1;
+            chartEmpresa.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
+            chartEmpresa.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartEmpresa.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
+            chartEmpresa.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Segoe UI", 8, FontStyle.Regular);
             chartSucursales.Series["Series1"].Points.Clear();
             chartSucursales.Series["Series1"].Points.AddXY("Rosario", 90);
             chartSucursales.Series["Series1"].Points.AddXY("Buenos Aires", 100);
