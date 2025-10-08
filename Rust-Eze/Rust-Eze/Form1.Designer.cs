@@ -59,45 +59,50 @@
             // dateInicio
             // 
             this.dateInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateInicio.Location = new System.Drawing.Point(13, 6);
+            this.dateInicio.Location = new System.Drawing.Point(17, 7);
+            this.dateInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateInicio.Name = "dateInicio";
-            this.dateInicio.Size = new System.Drawing.Size(103, 20);
+            this.dateInicio.Size = new System.Drawing.Size(136, 22);
             this.dateInicio.TabIndex = 0;
             this.dateInicio.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateFIn
             // 
             this.dateFIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateFIn.Location = new System.Drawing.Point(122, 6);
+            this.dateFIn.Location = new System.Drawing.Point(163, 7);
+            this.dateFIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateFIn.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateFIn.Name = "dateFIn";
-            this.dateFIn.Size = new System.Drawing.Size(103, 20);
+            this.dateFIn.Size = new System.Drawing.Size(136, 22);
             this.dateFIn.TabIndex = 1;
             // 
             // btnAnioPasado
             // 
-            this.btnAnioPasado.Location = new System.Drawing.Point(392, 7);
+            this.btnAnioPasado.Location = new System.Drawing.Point(523, 9);
+            this.btnAnioPasado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAnioPasado.Name = "btnAnioPasado";
-            this.btnAnioPasado.Size = new System.Drawing.Size(105, 23);
+            this.btnAnioPasado.Size = new System.Drawing.Size(140, 28);
             this.btnAnioPasado.TabIndex = 3;
             this.btnAnioPasado.Text = "Año pasado";
             this.btnAnioPasado.UseVisualStyleBackColor = true;
             // 
             // btnEsteanio
             // 
-            this.btnEsteanio.Location = new System.Drawing.Point(281, 7);
+            this.btnEsteanio.Location = new System.Drawing.Point(375, 9);
+            this.btnEsteanio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEsteanio.Name = "btnEsteanio";
-            this.btnEsteanio.Size = new System.Drawing.Size(105, 23);
+            this.btnEsteanio.Size = new System.Drawing.Size(140, 28);
             this.btnEsteanio.TabIndex = 5;
             this.btnEsteanio.Text = "Este año";
             this.btnEsteanio.UseVisualStyleBackColor = true;
             // 
             // btnConfirmarFecha
             // 
-            this.btnConfirmarFecha.Location = new System.Drawing.Point(231, 7);
+            this.btnConfirmarFecha.Location = new System.Drawing.Point(308, 9);
+            this.btnConfirmarFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfirmarFecha.Name = "btnConfirmarFecha";
-            this.btnConfirmarFecha.Size = new System.Drawing.Size(44, 23);
+            this.btnConfirmarFecha.Size = new System.Drawing.Size(59, 28);
             this.btnConfirmarFecha.TabIndex = 7;
             this.btnConfirmarFecha.Text = "Ok";
             this.btnConfirmarFecha.UseVisualStyleBackColor = true;
@@ -108,7 +113,8 @@
             this.chartEmpresa.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartEmpresa.Legends.Add(legend1);
-            this.chartEmpresa.Location = new System.Drawing.Point(12, 36);
+            this.chartEmpresa.Location = new System.Drawing.Point(16, 44);
+            this.chartEmpresa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartEmpresa.Name = "chartEmpresa";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
@@ -117,7 +123,7 @@
             series1.Name = "Series1";
             series1.YValuesPerPoint = 2;
             this.chartEmpresa.Series.Add(series1);
-            this.chartEmpresa.Size = new System.Drawing.Size(606, 223);
+            this.chartEmpresa.Size = new System.Drawing.Size(808, 274);
             this.chartEmpresa.TabIndex = 8;
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -131,14 +137,15 @@
             this.chartSucursales.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chartSucursales.Legends.Add(legend2);
-            this.chartSucursales.Location = new System.Drawing.Point(13, 265);
+            this.chartSucursales.Location = new System.Drawing.Point(17, 326);
+            this.chartSucursales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartSucursales.Name = "chartSucursales";
             series2.ChartArea = "ChartArea1";
             series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartSucursales.Series.Add(series2);
-            this.chartSucursales.Size = new System.Drawing.Size(606, 222);
+            this.chartSucursales.Size = new System.Drawing.Size(808, 273);
             this.chartSucursales.TabIndex = 9;
             this.chartSucursales.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -154,14 +161,15 @@
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend3.Name = "Legend1";
             this.chartMarcas.Legends.Add(legend3);
-            this.chartMarcas.Location = new System.Drawing.Point(624, 36);
+            this.chartMarcas.Location = new System.Drawing.Point(832, 44);
+            this.chartMarcas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chartMarcas.Name = "chartMarcas";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.chartMarcas.Series.Add(series3);
-            this.chartMarcas.Size = new System.Drawing.Size(336, 451);
+            this.chartMarcas.Size = new System.Drawing.Size(448, 555);
             this.chartMarcas.TabIndex = 10;
             this.chartMarcas.Text = "chart3";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -176,9 +184,10 @@
             // 
             // btnHistorico
             // 
-            this.btnHistorico.Location = new System.Drawing.Point(503, 7);
+            this.btnHistorico.Location = new System.Drawing.Point(671, 9);
+            this.btnHistorico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHistorico.Name = "btnHistorico";
-            this.btnHistorico.Size = new System.Drawing.Size(105, 23);
+            this.btnHistorico.Size = new System.Drawing.Size(140, 28);
             this.btnHistorico.TabIndex = 11;
             this.btnHistorico.Text = "Historico";
             this.btnHistorico.UseVisualStyleBackColor = true;
@@ -190,17 +199,18 @@
             "Buenos Aires",
             "Cordoba",
             "Rosario"});
-            this.cmbSucursal.Location = new System.Drawing.Point(738, 82);
+            this.cmbSucursal.Location = new System.Drawing.Point(954, 96);
+            this.cmbSucursal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(121, 21);
+            this.cmbSucursal.Size = new System.Drawing.Size(160, 24);
             this.cmbSucursal.TabIndex = 12;
             this.cmbSucursal.SelectedIndexChanged += new System.EventHandler(this.cmbSucursal_SelectedIndexChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 495);
+            this.ClientSize = new System.Drawing.Size(1299, 609);
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.chartMarcas);
@@ -211,6 +221,7 @@
             this.Controls.Add(this.btnAnioPasado);
             this.Controls.Add(this.dateFIn);
             this.Controls.Add(this.dateInicio);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)(this.chartEmpresa)).EndInit();
