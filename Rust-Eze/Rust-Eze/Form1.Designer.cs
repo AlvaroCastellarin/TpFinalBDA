@@ -60,7 +60,7 @@
             // 
             this.dateInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateInicio.Location = new System.Drawing.Point(17, 7);
-            this.dateInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateInicio.Margin = new System.Windows.Forms.Padding(4);
             this.dateInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateInicio.Name = "dateInicio";
             this.dateInicio.Size = new System.Drawing.Size(136, 22);
@@ -71,7 +71,7 @@
             // 
             this.dateFIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateFIn.Location = new System.Drawing.Point(163, 7);
-            this.dateFIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateFIn.Margin = new System.Windows.Forms.Padding(4);
             this.dateFIn.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateFIn.Name = "dateFIn";
             this.dateFIn.Size = new System.Drawing.Size(136, 22);
@@ -80,7 +80,7 @@
             // btnAnioPasado
             // 
             this.btnAnioPasado.Location = new System.Drawing.Point(523, 9);
-            this.btnAnioPasado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAnioPasado.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnioPasado.Name = "btnAnioPasado";
             this.btnAnioPasado.Size = new System.Drawing.Size(140, 28);
             this.btnAnioPasado.TabIndex = 3;
@@ -90,7 +90,7 @@
             // btnEsteanio
             // 
             this.btnEsteanio.Location = new System.Drawing.Point(375, 9);
-            this.btnEsteanio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEsteanio.Margin = new System.Windows.Forms.Padding(4);
             this.btnEsteanio.Name = "btnEsteanio";
             this.btnEsteanio.Size = new System.Drawing.Size(140, 28);
             this.btnEsteanio.TabIndex = 5;
@@ -100,7 +100,7 @@
             // btnConfirmarFecha
             // 
             this.btnConfirmarFecha.Location = new System.Drawing.Point(308, 9);
-            this.btnConfirmarFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirmarFecha.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmarFecha.Name = "btnConfirmarFecha";
             this.btnConfirmarFecha.Size = new System.Drawing.Size(59, 28);
             this.btnConfirmarFecha.TabIndex = 7;
@@ -114,7 +114,7 @@
             legend1.Name = "Legend1";
             this.chartEmpresa.Legends.Add(legend1);
             this.chartEmpresa.Location = new System.Drawing.Point(16, 44);
-            this.chartEmpresa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chartEmpresa.Margin = new System.Windows.Forms.Padding(4);
             this.chartEmpresa.Name = "chartEmpresa";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
@@ -138,7 +138,7 @@
             legend2.Name = "Legend1";
             this.chartSucursales.Legends.Add(legend2);
             this.chartSucursales.Location = new System.Drawing.Point(17, 326);
-            this.chartSucursales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chartSucursales.Margin = new System.Windows.Forms.Padding(4);
             this.chartSucursales.Name = "chartSucursales";
             series2.ChartArea = "ChartArea1";
             series2.IsVisibleInLegend = false;
@@ -162,7 +162,7 @@
             legend3.Name = "Legend1";
             this.chartMarcas.Legends.Add(legend3);
             this.chartMarcas.Location = new System.Drawing.Point(832, 44);
-            this.chartMarcas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chartMarcas.Margin = new System.Windows.Forms.Padding(4);
             this.chartMarcas.Name = "chartMarcas";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
@@ -185,7 +185,7 @@
             // btnHistorico
             // 
             this.btnHistorico.Location = new System.Drawing.Point(671, 9);
-            this.btnHistorico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHistorico.Margin = new System.Windows.Forms.Padding(4);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(140, 28);
             this.btnHistorico.TabIndex = 11;
@@ -199,8 +199,8 @@
             "Buenos Aires",
             "Cordoba",
             "Rosario"});
-            this.cmbSucursal.Location = new System.Drawing.Point(954, 96);
-            this.cmbSucursal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSucursal.Location = new System.Drawing.Point(992, 101);
+            this.cmbSucursal.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSucursal.Name = "cmbSucursal";
             this.cmbSucursal.Size = new System.Drawing.Size(160, 24);
             this.cmbSucursal.TabIndex = 12;
@@ -221,7 +221,7 @@
             this.Controls.Add(this.btnAnioPasado);
             this.Controls.Add(this.dateFIn);
             this.Controls.Add(this.dateInicio);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)(this.chartEmpresa)).EndInit();
