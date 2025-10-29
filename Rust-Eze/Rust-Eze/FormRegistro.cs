@@ -20,6 +20,8 @@ namespace Rust_Eze
         public FormRegistro()
         {
             InitializeComponent();
+            btnRegistrar.Click += BtnRegistrar_Click;
+            btnCancelar.Click += (s, e) => this.Close();
         }
 
         private void InitializeComponent()
@@ -40,10 +42,9 @@ namespace Rust_Eze
             txtConfirmar = new TextBox() { Left = 120, Top = 94, Width = 200, UseSystemPasswordChar = true };
 
             btnRegistrar = new Button() { Text = "Registrar", Left = 120, Width = 90, Top = 140, DialogResult = DialogResult.None };
-            btnRegistrar.Click += BtnRegistrar_Click;
+
 
             btnCancelar = new Button() { Text = "Cancelar", Left = 230, Width = 90, Top = 140, DialogResult = DialogResult.Cancel };
-            btnCancelar.Click += (s, e) => this.Close();
 
             this.Controls.Add(lblEmail);
             this.Controls.Add(txtEmail);
