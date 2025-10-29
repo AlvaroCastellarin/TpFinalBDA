@@ -31,7 +31,7 @@ namespace Rust_Eze
         // Valida inicio de sesión usando email + contraseña hasheada
         bool ValidarLogin()
         {
-            string email = txtEmail.Text.Trim(); // requiere que en el Designer el textbox se llame txtEmail
+            string email = txtEmail.Text.Trim(); 
             if (string.IsNullOrWhiteSpace(email)) return false;
 
             var usuario = ru.GetUsuarioByEmail(email);
@@ -41,7 +41,6 @@ namespace Rust_Eze
         }
 
         private int intentos = 3;
-        // Botón para iniciar sesión
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -79,7 +78,6 @@ namespace Rust_Eze
 
         private void btnCambiarContra_Click(object sender, EventArgs e)
         {
-            // Requiere que en el login el campo de email se llame txtEmail
             string emailPrefill = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text.Trim();
             if (string.IsNullOrWhiteSpace(emailPrefill))
             {
@@ -97,10 +95,10 @@ namespace Rust_Eze
                     return;
                 }
 
-                // Crear token (válido 1 hora)
+                // Genera token (Dura solo 1 hora)
                 string token = repo.CreateResetToken(emailPrefill, TimeSpan.FromHours(1));
 
-                // Enviar mail (puede lanzar excepción si SMTP mal configurado)
+                // Enviar mail
                 try
                 {
                     EmailHelper.SendResetEmail(usuarioObj.Email, usuarioObj.Email, token);
@@ -108,12 +106,11 @@ namespace Rust_Eze
                 }
                 catch (Exception exSend)
                 {
-                    // Mostrar error completo y el token para pruebas locales
                     MessageBox.Show("No se pudo enviar el correo: " + exSend.Message + "\n\nToken (solo pruebas): " + token,
                                     "Error envío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                // Abrir formulario en modo recuperación (pedirá token + nueva contraseña)
+                // Abrir formulario para cambiar contrasenia (pedirá token + nueva contraseña)
                 using (var frm = new FormCambioContra(emailPrefill, true))
                 {
                     var res = frm.ShowDialog(this);

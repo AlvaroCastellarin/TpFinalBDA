@@ -228,7 +228,7 @@ namespace Rust_Eze
 
         private void btnAnioPasado_Click(object sender, EventArgs e)
         {
-            int anioActual = dateAnio.Value.Year;
+            int anioActual = DateTime.Now.Year;
 
             int anioAnterior = anioActual - 1;
 

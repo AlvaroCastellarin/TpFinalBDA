@@ -46,7 +46,7 @@ namespace Rust_Eze
                 {
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.EnableSsl = enableSsl;
-                    client.Timeout = 20000; // 20s
+                    client.Timeout = 20000; // 20segs
 
                     if (!string.IsNullOrWhiteSpace(smtpUser))
                     {
@@ -64,7 +64,6 @@ namespace Rust_Eze
                     }
                     catch (SmtpException ex)
                     {
-                        // Lanzar con detalle para que el UI lo muestre y puedas depurar
                         throw new Exception("Error al enviar correo. " + ex.ToString());
                     }
                     catch (Exception ex)

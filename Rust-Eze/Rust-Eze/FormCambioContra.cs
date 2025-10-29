@@ -25,7 +25,6 @@ namespace Rust_Eze
 
         private readonly bool isRecoveryMode;
 
-        // recoveryMode = true -> formulario para restablecer con token (no pide contraseña actual)
         public FormCambioContra(string usuarioInicial = null, bool recoveryMode = false)
         {
             isRecoveryMode = recoveryMode;
@@ -139,7 +138,6 @@ namespace Rust_Eze
                 }
                 else
                 {
-                    // Modo recuperación: actualOrToken contiene el token enviado por email
                     var usuarioObj = repo.GetUsuarioByEmail(usuario);
                     if (usuarioObj == null)
                     {
