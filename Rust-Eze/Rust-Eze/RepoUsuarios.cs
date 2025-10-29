@@ -27,7 +27,7 @@ namespace Rust_Eze
                 }
 
                 // Fallback para desarrollo SIN AttachDbFilename (evita intentar adjuntar archivos que ya están registrados)
-                return @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;";
+                return @"Data Source=ALVARO\SQLEXPRESS;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;TrustServerCertificate=True;";
             }
         }
 

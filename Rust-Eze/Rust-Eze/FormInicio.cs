@@ -53,7 +53,7 @@ namespace Rust_Eze
                 }
                 if (ValidarLogin())
                 {
-                    Form1 form1 = new Form1();
+                    FormDashboard form1 = new FormDashboard();
                     this.Hide();
                     form1.FormClosed += (s, args) => this.Close(); // cierra login cuando se cierra el dashboard
                     form1.Show();
