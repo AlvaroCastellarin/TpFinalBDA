@@ -79,8 +79,8 @@
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepoEstadisticas.cs" />
-    <Compile Include="RepoUsuarios.cs" />
+    <Compile Include="Repositorios\RepoEstadisticas.cs" />
+    <Compile Include="Repositorios\RepoUsuarios.cs" />
     <Compile Include="TestConnection.cs" />
     <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="FormDashboard.resx">

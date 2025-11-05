@@ -23,13 +23,13 @@ namespace Rust_Eze
             chartSucursales.Legends[0].Enabled = false;
         }
         private Dictionary<string, Color> coloresMarcas = new Dictionary<string, Color>
-    {
-        { "Ford", Color.FromArgb(0, 47, 108) },       // Azul oscuro (Ford)
-        { "Toyota", Color.FromArgb(235, 0, 30) },     // Rojo (Toyota)
-        { "Peugeot", Color.FromArgb(100, 100, 100) }, // Gris (Peugeot)
-        { "Volkswagen", Color.FromArgb(0, 174, 239) },// Azul claro (Volkswagen)
-        { "Fiat", Color.FromArgb(170, 0, 0) }         // Rojo oscuro (Fiat)
-    };
+        {
+            { "Ford", Color.FromArgb(0, 47, 108) },       // Azul oscuro (Ford)
+            { "Toyota", Color.FromArgb(235, 0, 30) },     // Rojo (Toyota)
+            { "Peugeot", Color.FromArgb(100, 100, 100) }, // Gris (Peugeot)
+            { "Volkswagen", Color.FromArgb(0, 174, 239) },// Azul claro (Volkswagen)
+            { "Fiat", Color.FromArgb(170, 0, 0) }         // Rojo oscuro (Fiat)
+        };
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -228,7 +228,7 @@ namespace Rust_Eze
 
         private void btnAnioPasado_Click(object sender, EventArgs e)
         {
-            int anioActual = dateAnio.Value.Year;
+            int anioActual = DateTime.Now.Year;
 
             int anioAnterior = anioActual - 1;
 
