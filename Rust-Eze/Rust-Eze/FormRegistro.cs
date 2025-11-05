@@ -102,6 +102,8 @@ namespace Rust_Eze
             {
                 MessageBox.Show("No se pudo registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
         }
     }
 }
