@@ -83,6 +83,9 @@
     <Compile Include="Repositorios\RepoUsuarios.cs" />
     <Compile Include="TestConnection.cs" />
     <Compile Include="Usuario.cs" />
+    <EmbeddedResource Include="FormCambioContra.resx">
+      <DependentUpon>FormCambioContra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </EmbeddedResource>

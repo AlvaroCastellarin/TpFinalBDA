@@ -78,51 +78,24 @@ namespace Rust_Eze
 
         private void btnCambiarContra_Click(object sender, EventArgs e)
         {
-            string emailPrefill = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text.Trim();
-            if (string.IsNullOrWhiteSpace(emailPrefill))
+            // Obtener el email actual del campo de texto (puede estar vacío o tener contenido)
+            string emailPrefill = txtEmail.Text.Trim();
+
+            // Si está vacío, pasamos null para que el constructor de FormCambioContra lo maneje
+            string emailParaFormulario = string.IsNullOrWhiteSpace(emailPrefill) ? null : emailPrefill;
+
+
+            // 1. Abrir el formulario para cambiar contrasenia (siempre se abre)
+            using (var frm = new FormCambioContra(emailParaFormulario, true))
             {
-                MessageBox.Show("Ingrese su email en el campo antes de solicitar recuperación.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                var res = frm.ShowDialog(this);
 
-            try
-            {
-                RepoUsuarios repo = new RepoUsuarios();
-                var usuarioObj = repo.GetUsuarioByEmail(emailPrefill);
-                if (usuarioObj == null)
+                // El resto de la lógica de envío de token y email se moverá a FormCambioContra.
+                // Aquí solo manejamos el resultado del diálogo.
+                if (res == DialogResult.OK)
                 {
-                    MessageBox.Show("Email no registrado.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("Contraseña cambiada correctamente.", "Cambio de contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // Genera token (Dura solo 1 hora)
-                string token = repo.CreateResetToken(emailPrefill, TimeSpan.FromHours(1));
-
-                // Enviar mail
-                try
-                {
-                    EmailHelper.SendResetEmail(usuarioObj.Email, usuarioObj.Email, token);
-                    MessageBox.Show("Se envió un correo con el código de recuperación. Revisa tu bandeja.", "Enviado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception exSend)
-                {
-                    MessageBox.Show("No se pudo enviar el correo: " + exSend.Message + "\n\nToken (solo pruebas): " + token,
-                                    "Error envío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-                // Abrir formulario para cambiar contrasenia (pedirá token + nueva contraseña)
-                using (var frm = new FormCambioContra(emailPrefill, true))
-                {
-                    var res = frm.ShowDialog(this);
-                    if (res == DialogResult.OK)
-                    {
-                        MessageBox.Show("Contraseña cambiada correctamente.", "Cambio de contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

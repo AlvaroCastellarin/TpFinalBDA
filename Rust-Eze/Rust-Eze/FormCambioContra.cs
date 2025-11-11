@@ -12,83 +12,103 @@ namespace Rust_Eze
 {
     public partial class FormCambioContra : Form
     {
-        private Label lblUsuario;
-        private TextBox txtUsuario;
-        private Label lblActual;
-        private TextBox txtActual;
-        private Label lblNueva;
-        private TextBox txtNueva;
-        private Label lblConfirmar;
-        private TextBox txtConfirmar;
-        private Button btnCambiar;
-        private Button btnCancelar;
-
         private readonly bool isRecoveryMode;
 
         public FormCambioContra(string usuarioInicial = null, bool recoveryMode = false)
         {
             isRecoveryMode = recoveryMode;
-            InitializeCustomComponent();
+            InitializeComponent();
+
             if (!string.IsNullOrWhiteSpace(usuarioInicial))
                 txtUsuario.Text = usuarioInicial;
 
             if (isRecoveryMode)
             {
-                // Ajustes UI para recuperación por token
+                // Modo Recuperación: Inicialmente solo muestra el email y el botón para enviar código.
+                this.Text = "Recuperar Contraseña";
                 lblUsuario.Text = "Email";
                 lblActual.Text = "Código (token)";
                 txtActual.UseSystemPasswordChar = false;
-                lblActual.Visible = true;
-                txtActual.Visible = true;
+
+                // Ocultar los campos de token y nueva contraseña al inicio.
+                
+                txtActual.Enabled = false;
+                txtNueva.Enabled = false;
+                txtConfirmar.Enabled = false;
+
+                // Deshabilitar el botón de confirmación hasta tener un token.
+                btnCambiar.Enabled = false;
             }
             else
             {
+                // Modo Normal: Muestra todos los campos (Usuario, Contraseña actual, Nueva...).
+                this.Text = "Cambiar Contraseña";
                 lblUsuario.Text = "Usuario";
                 lblActual.Text = "Contraseña actual";
                 txtActual.UseSystemPasswordChar = true;
+                // El botón para enviar código no es necesario en este modo.
+                btnEnviarCodigo.Visible = false;
             }
         }
 
-        private void InitializeCustomComponent()
+
+        private void btnEnviarCodigo_Click(object sender, EventArgs e)
         {
-            this.Text = "Cambiar contraseña";
-            this.Size = new Size(380, 260);
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.StartPosition = FormStartPosition.CenterParent;
+            // Nota: Este método se asocia al botón "Enviar Código" en el Diseñador.
+            string email = txtUsuario.Text.Trim();
 
-            lblUsuario = new Label() { Left = 20, Top = 20, Text = "Usuario", AutoSize = true };
-            txtUsuario = new TextBox() { Left = 140, Top = 18, Width = 200 };
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Debe ingresar el E-mail para enviar el código de recuperación.", "E-mail Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            lblActual = new Label() { Left = 20, Top = 58, Text = "Contraseña actual", AutoSize = true };
-            txtActual = new TextBox() { Left = 140, Top = 56, Width = 200, UseSystemPasswordChar = true };
+            try
+            {
+                RepoUsuarios repo = new RepoUsuarios();
+                var usuarioObj = repo.GetUsuarioByEmail(email);
 
-            lblNueva = new Label() { Left = 20, Top = 96, Text = "Nueva contraseña", AutoSize = true };
-            txtNueva = new TextBox() { Left = 140, Top = 94, Width = 200, UseSystemPasswordChar = true };
+                // 1. Manejo de usuario no encontrado (seguro)
+                if (usuarioObj == null)
+                {
+                    MessageBox.Show("Si el email ingresado está registrado, recibirá un correo. Revise su bandeja.",
+                                    "Proceso Iniciado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-            lblConfirmar = new Label() { Left = 20, Top = 134, Text = "Confirmar nueva", AutoSize = true };
-            txtConfirmar = new TextBox() { Left = 140, Top = 132, Width = 200, UseSystemPasswordChar = true };
+                // 2. Generar Token
+                string token = repo.CreateResetToken(email, TimeSpan.FromHours(1));
 
-            btnCambiar = new Button() { Text = "Cambiar", Left = 140, Width = 90, Top = 175 };
-            btnCambiar.Click += BtnCambiar_Click;
+                // 3. Intentar enviar email (aquí es donde falla si la configuración SMTP es incorrecta)
+                try
+                {
+                    EmailHelper.SendResetEmail(usuarioObj.Email, usuarioObj.Email, token);
+                    MessageBox.Show("Se envió un correo con el código de recuperación. Ya puede ingresarlo y elegir una nueva contraseña.", "Enviado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception exSend)
+                {
+                    MessageBox.Show("No se pudo enviar el correo: " + exSend.Message + "\n\nToken (solo pruebas): " + token,
+                                    "Error envío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
-            btnCancelar = new Button() { Text = "Cancelar", Left = 250, Width = 90, Top = 175, DialogResult = DialogResult.Cancel };
-            btnCancelar.Click += (s, e) => this.Close();
+                // 4. Habilitar la UI para el siguiente paso
+                txtActual.Enabled = true;
+                btnCambiar.Enabled = true;
+                txtNueva.Enabled = true;
+                txtConfirmar.Enabled = true;
 
-            this.Controls.Add(lblUsuario);
-            this.Controls.Add(txtUsuario);
-            this.Controls.Add(lblActual);
-            this.Controls.Add(txtActual);
-            this.Controls.Add(lblNueva);
-            this.Controls.Add(txtNueva);
-            this.Controls.Add(lblConfirmar);
-            this.Controls.Add(txtConfirmar);
-            this.Controls.Add(btnCambiar);
-            this.Controls.Add(btnCancelar);
+                btnCambiar.Enabled = true; // Habilita "Confirmar Cambio"
+                btnEnviarCodigo.Enabled = false; // Deshabilita para evitar tokens múltiples
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al solicitar el código: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void BtnCambiar_Click(object sender, EventArgs e)
+        private void btnCambiar_Click(object sender, EventArgs e)
         {
+            // Nota: Este método se asocia al botón "Confirmar Cambio" en el Diseñador.
             string usuario = txtUsuario.Text.Trim();
             string actualOrToken = txtActual.Text;
             string nueva = txtNueva.Text;
@@ -114,7 +134,7 @@ namespace Rust_Eze
 
                 if (!isRecoveryMode)
                 {
-                    // Modo normal: validar contraseña actual
+                    // Lógica para cambiar contraseña conociendo la actual (Modo Normal)
                     var usuarioObj = repo.GetUsuarioByEmail(usuario);
                     if (usuarioObj == null)
                     {
@@ -138,6 +158,7 @@ namespace Rust_Eze
                 }
                 else
                 {
+                    // Lógica para restablecer contraseña con el Token (Modo Recuperación)
                     var usuarioObj = repo.GetUsuarioByEmail(usuario);
                     if (usuarioObj == null)
                     {
