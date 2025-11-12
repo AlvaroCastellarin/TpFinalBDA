@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-//a
+
 namespace Rust_Eze
 {
     public partial class FormInicio : Form
@@ -78,20 +78,15 @@ namespace Rust_Eze
 
         private void btnCambiarContra_Click(object sender, EventArgs e)
         {
-            // Obtener el email actual del campo de texto (puede estar vacío o tener contenido)
             string emailPrefill = txtEmail.Text.Trim();
 
-            // Si está vacío, pasamos null para que el constructor de FormCambioContra lo maneje
             string emailParaFormulario = string.IsNullOrWhiteSpace(emailPrefill) ? null : emailPrefill;
 
 
-            // 1. Abrir el formulario para cambiar contrasenia (siempre se abre)
             using (var frm = new FormCambioContra(emailParaFormulario, true))
             {
                 var res = frm.ShowDialog(this);
 
-                // El resto de la lógica de envío de token y email se moverá a FormCambioContra.
-                // Aquí solo manejamos el resultado del diálogo.
                 if (res == DialogResult.OK)
                 {
                     MessageBox.Show("Contraseña cambiada correctamente.", "Cambio de contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);

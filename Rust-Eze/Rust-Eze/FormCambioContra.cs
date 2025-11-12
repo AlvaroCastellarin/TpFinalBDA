@@ -24,29 +24,23 @@ namespace Rust_Eze
 
             if (isRecoveryMode)
             {
-                // Modo Recuperación: Inicialmente solo muestra el email y el botón para enviar código.
                 this.Text = "Recuperar Contraseña";
                 lblUsuario.Text = "Email";
                 lblActual.Text = "Código (token)";
                 txtActual.UseSystemPasswordChar = false;
 
-                // Ocultar los campos de token y nueva contraseña al inicio.
                 
                 txtActual.Enabled = false;
                 txtNueva.Enabled = false;
                 txtConfirmar.Enabled = false;
-
-                // Deshabilitar el botón de confirmación hasta tener un token.
                 btnCambiar.Enabled = false;
             }
             else
             {
-                // Modo Normal: Muestra todos los campos (Usuario, Contraseña actual, Nueva...).
                 this.Text = "Cambiar Contraseña";
                 lblUsuario.Text = "Usuario";
                 lblActual.Text = "Contraseña actual";
                 txtActual.UseSystemPasswordChar = true;
-                // El botón para enviar código no es necesario en este modo.
                 btnEnviarCodigo.Visible = false;
             }
         }
@@ -54,7 +48,6 @@ namespace Rust_Eze
 
         private void btnEnviarCodigo_Click(object sender, EventArgs e)
         {
-            // Nota: Este método se asocia al botón "Enviar Código" en el Diseñador.
             string email = txtUsuario.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(email))
@@ -68,7 +61,6 @@ namespace Rust_Eze
                 RepoUsuarios repo = new RepoUsuarios();
                 var usuarioObj = repo.GetUsuarioByEmail(email);
 
-                // 1. Manejo de usuario no encontrado (seguro)
                 if (usuarioObj == null)
                 {
                     MessageBox.Show("Si el email ingresado está registrado, recibirá un correo. Revise su bandeja.",
@@ -76,10 +68,8 @@ namespace Rust_Eze
                     return;
                 }
 
-                // 2. Generar Token
                 string token = repo.CreateResetToken(email, TimeSpan.FromHours(1));
 
-                // 3. Intentar enviar email (aquí es donde falla si la configuración SMTP es incorrecta)
                 try
                 {
                     EmailHelper.SendResetEmail(usuarioObj.Email, usuarioObj.Email, token);
@@ -91,14 +81,14 @@ namespace Rust_Eze
                                     "Error envío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                // 4. Habilitar la UI para el siguiente paso
+ 
                 txtActual.Enabled = true;
                 btnCambiar.Enabled = true;
                 txtNueva.Enabled = true;
                 txtConfirmar.Enabled = true;
 
-                btnCambiar.Enabled = true; // Habilita "Confirmar Cambio"
-                btnEnviarCodigo.Enabled = false; // Deshabilita para evitar tokens múltiples
+                btnCambiar.Enabled = true;
+                btnEnviarCodigo.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -108,7 +98,6 @@ namespace Rust_Eze
 
         private void btnCambiar_Click(object sender, EventArgs e)
         {
-            // Nota: Este método se asocia al botón "Confirmar Cambio" en el Diseñador.
             string usuario = txtUsuario.Text.Trim();
             string actualOrToken = txtActual.Text;
             string nueva = txtNueva.Text;
@@ -134,7 +123,7 @@ namespace Rust_Eze
 
                 if (!isRecoveryMode)
                 {
-                    // Lógica para cambiar contraseña conociendo la actual (Modo Normal)
+                    // Lógica para cambiar contraseña conociendo la actual
                     var usuarioObj = repo.GetUsuarioByEmail(usuario);
                     if (usuarioObj == null)
                     {
@@ -158,7 +147,7 @@ namespace Rust_Eze
                 }
                 else
                 {
-                    // Lógica para restablecer contraseña con el Token (Modo Recuperación)
+                    // Lógica para restablecer contraseña con el Token
                     var usuarioObj = repo.GetUsuarioByEmail(usuario);
                     if (usuarioObj == null)
                     {

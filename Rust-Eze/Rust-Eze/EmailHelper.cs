@@ -25,7 +25,7 @@ namespace Rust_Eze
             if (string.IsNullOrWhiteSpace(smtpHost) || string.IsNullOrWhiteSpace(fromAddress))
                 throw new Exception("Configure SMTP en App.config (smtpHost y smtpFrom).");
 
-            // Forzar TLS 1.2
+
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var body = $"Hola {username},\n\n" +
@@ -46,7 +46,7 @@ namespace Rust_Eze
                 {
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.EnableSsl = enableSsl;
-                    client.Timeout = 20000; // 20segs
+                    client.Timeout = 20000; 
 
                     if (!string.IsNullOrWhiteSpace(smtpUser))
                     {

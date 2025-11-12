@@ -207,7 +207,7 @@ namespace Rust_Eze
                 MessageBox.Show("Seleccione un año válido entre 2020 y " + DateTime.Now.Year);
                 return;
             }
-            int idSucursal = 0; // 0 significa todas las sucursales ("Rust-Eze")
+            int idSucursal = 0; 
             try
             {
                 if (sucursalSeleccionada != "Rust-Eze")
@@ -218,7 +218,7 @@ namespace Rust_Eze
                 labelVentas.Text = cmbSucursal.SelectedItem.ToString();
                 CargarGraficoVentas(idSucursal, anioSeleccionado, sucursalSeleccionada);
                 CargarGraficoMarcas(idSucursal, anioSeleccionado);
-                CargarGraficoSucursales(anioSeleccionado); // Este ignora la sucursal
+                CargarGraficoSucursales(anioSeleccionado);
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace Rust_Eze
             }
             catch
             {
-                dateAnio.Value = new DateTime(anioAnterior, 1, 1); // Lo pone en 1 de enero
+                dateAnio.Value = new DateTime(anioAnterior, 1, 1); 
             }
             btnConfirmarFecha_Click(sender, e);
         }

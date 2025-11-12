@@ -20,14 +20,14 @@ namespace Rust_Eze
                     if (!string.IsNullOrWhiteSpace(cs)) return cs;
                 }
                 catch { }
-                return @"Data Source=ALVARO\SQLEXPRESS;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;TrustServerCertificate=True;";
+                return @"Data Source=LAPTOP-UQKB2TBV;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;TrustServerCertificate=True;";
             }
         }
       
         public int ObtenerIdSucursal(string nombreCiudad)
         {
             if (nombreCiudad == "Rust-Eze")
-                return 0; // 0 significa todas las sucursales
+                return 0;
 
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {

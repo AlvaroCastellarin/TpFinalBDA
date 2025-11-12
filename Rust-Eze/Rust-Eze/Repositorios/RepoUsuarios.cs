@@ -11,7 +11,6 @@ namespace Rust_Eze
 {
     public class RepoUsuarios
     {
-        // Lee la cadena de conexión de App.config; si no existe, usa LocalDB para desarrollo.
         private string CadenaConexion
         {
             get
@@ -23,11 +22,10 @@ namespace Rust_Eze
                 }
                 catch
                 {
-                    // Ignorar y usar fallback
+
                 }
 
-                // Fallback para desarrollo SIN AttachDbFilename (evita intentar adjuntar archivos que ya están registrados)
-                return @"Data Source=LAPTOP-UQKB2TBV\SQLEXPRESS;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;TrustServerCertificate=True;";
+                return @"Data Source=LAPTOP-UQKB2TBV;Initial Catalog=ConcesionarioRustEze;Integrated Security=True;TrustServerCertificate=True;";
             }
         }
 
@@ -96,7 +94,6 @@ namespace Rust_Eze
             {
                 conexion.Open();
 
-                // Verificar si ya existe el email
                 using (SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(1) FROM Usuario WHERE email = @email", conexion))
                 {
                     cmdCheck.Parameters.AddWithValue("@email", email);
@@ -104,7 +101,6 @@ namespace Rust_Eze
                     if (existe > 0) throw new Exception("El email ya está registrado.");
                 }
 
-                // Insertar nuevo usuario
                 using (SqlCommand cmdInsert = new SqlCommand("INSERT INTO Usuario (email, password) VALUES (@email, @password)", conexion))
                 {
                     cmdInsert.Parameters.AddWithValue("@email", email);
@@ -135,7 +131,6 @@ namespace Rust_Eze
             }
         }
 
-        // Tokens de recuperación (usa email)
         public string CreateResetToken(string email, TimeSpan validFor)
         {
             if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("email vacío");
